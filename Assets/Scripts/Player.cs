@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [HideInInspector] private Vector2 moveDirection;
     [HideInInspector] private int score;
     [HideInInspector] private int totalTime;
+    [HideInInspector] public bool nextLevel;
 
     [HideInInspector] private float timerLeft;
 
@@ -69,10 +70,11 @@ public class Player : MonoBehaviour
 
     private void CheckForWin()
     {
-        if (transform.position.x > mazeGenerator.mazeRows / 2 || transform.position.x < -(mazeGenerator.mazeRows / 2) ||
+        if (!nextLevel && transform.position.x > mazeGenerator.mazeRows / 2 || transform.position.x < -(mazeGenerator.mazeRows / 2) ||
             transform.position.y > mazeGenerator.mazeColumns / 2 ||
             transform.position.y < -(mazeGenerator.mazeColumns / 2))
         {
+            nextLevel = true;
             transform.position = Vector3.zero;
             mazeGenerator.mazeRows += difficulty;
             mazeGenerator.mazeColumns += difficulty;

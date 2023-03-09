@@ -10,6 +10,8 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private GameObject cellPrefab;
     [SerializeField] public bool disableCellSprite;
 
+    [SerializeField] private Player player;
+
     [HideInInspector] private int centreSize = 2;
     [HideInInspector] private Dictionary<Vector2, Cell> allCells = new Dictionary<Vector2, Cell>();
     [HideInInspector] private List<Cell> unvisited = new List<Cell>();
@@ -36,6 +38,7 @@ public class MazeGenerator : MonoBehaviour
         if (mazeParent != null) DeleteMaze();
 
         CreateLayout();
+        player.nextLevel = false;
     }
 
     private void CreateLayout()
